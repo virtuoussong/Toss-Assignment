@@ -1,0 +1,6 @@
+framework module Pods_tosshomeworkSampleTests {
+  umbrella header "Pods-tosshomeworkSampleTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
