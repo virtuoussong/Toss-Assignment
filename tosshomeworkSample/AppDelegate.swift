@@ -16,7 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        let initialViewController = DutchPayViewController()
+        
+        let dutchPayApiService = DutchPayService(requestManager: .shared)
+        let dutchPayViewModel = DutchPayViewModel(requestService: dutchPayApiService)
+        let initialViewController = DutchPayViewController(viewModel: dutchPayViewModel)
+        
         let navigationController = UINavigationController(rootViewController: initialViewController)
         self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
