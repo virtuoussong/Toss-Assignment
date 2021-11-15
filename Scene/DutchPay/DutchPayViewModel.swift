@@ -50,4 +50,8 @@ final class DutchPayViewModel {
     func refreshDutchPayData() {
         self.fetchDutchPayData()
     }
+    
+    func updatePaymentStatus(index: Int) {
+        self.dutchPayData.value?.dutchDetailList?[index].updatePaymentStatus()
+    }
 }

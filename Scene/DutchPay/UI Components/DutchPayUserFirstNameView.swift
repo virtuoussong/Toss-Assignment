@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-class DutchPayUserFirstNameView: UIView {
+final class DutchPayUserFirstNameView: UIView {
     // MARK: UI Component
-    let firstNameLabel: UILabel = {
+    private let firstNameLabel: UILabel = {
         let f = UILabel()
         f.font = UIFont.systemFont(ofSize: 15)
         f.textColor = .blue
@@ -22,7 +22,11 @@ class DutchPayUserFirstNameView: UIView {
         super.init(frame: frame)
         self.addSubView()
         self.layoutComponents()
-        self.drawBorderRadius()
+    }
+    
+    convenience init(circleSize: CGFloat) {
+        self.init(frame: .zero)
+        self.drawBorderRadius(circleSize: circleSize)
     }
     
     required init?(coder: NSCoder) {
@@ -44,9 +48,13 @@ class DutchPayUserFirstNameView: UIView {
         }
     }
     
-    private func drawBorderRadius() {
-        self.layer.cornerRadius = self.bounds.height / 2
+    private func drawBorderRadius(circleSize: CGFloat) {
+        self.layer.cornerRadius = circleSize / 2
         self.layer.borderWidth = 1
         self.layer.borderColor = UIColor.gray.cgColor
+        
+        self.snp.makeConstraints {
+            $0.size.equalTo(CGSize(width: circleSize, height: circleSize))
+        }
     }
 }

@@ -67,11 +67,20 @@ final class DutchPayViewController: UIViewController {
             $0.edges.equalToSuperview()
         }
     }
+    
+    private func animateProgressButton() {
+        if let cell = self.collectionView.cellForItem(at: IndexPath(item: 0, section: 0)) as? DutchPayCollectionViewCell {
+            let data = self.viewModel.dutchPayData.value?.dutchDetailList?[0]
+            if data?.paymentStatus == .sendingRequest {
+                cell.progressAnimationButton.animate(from: 0)
+            }
+        }
+    }
 }
 
 extension DutchPayViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = CGSize(width: self.view.frame.width, height: 50)
+        let size = CGSize(width: self.view.frame.width, height: 72)
         return size
     }
     
@@ -89,7 +98,14 @@ extension DutchPayViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellId.cell, for: indexPath) as? DutchPayCollectionViewCell {
             let data: DutchPayData.DutchDetail? = self.viewModel.dutchPayData.value?.dutchDetailList?[indexPath.item]
+            
             cell.configure(data: data)
+            
+            cell.requestPaymentButtonTapHandler = { [weak self] status in
+                guard let `self` = self else { return }
+                self.viewModel.updatePaymentStatus(index: indexPath.item)
+            }
+            
             return cell
         } else {
             fatalError()
@@ -111,5 +127,4 @@ extension DutchPayViewController: UICollectionViewDataSource {
         }
     }
 }
-
 

@@ -33,7 +33,8 @@ struct DutchPayData {
         var name: String?
         var amount: Int16?
         var transferMessage: String?
-        var isDone: Bool?
+        var isDone: Bool = false
+        var paymentStatus: DutchPaymentStatus = .notReceivedMoney
         
         init(_ json: JSON) {
             self.dutchId = json["dutchId"].intValue
@@ -41,6 +42,15 @@ struct DutchPayData {
             self.amount = json["amount"].int16Value
             self.transferMessage = json["transferMessage"].stringValue
             self.isDone = json["isDont"].boolValue
+            if self.isDone {
+                self.paymentStatus = .receivedMoney
+            } else {
+                self.paymentStatus = .notReceivedMoney
+            }
+        }
+        
+        mutating func updatePaymentStatus() {
+            self.paymentStatus = self.paymentStatus.next()
         }
     }
     
@@ -53,4 +63,11 @@ struct DutchPayData {
         }
         self.dutchSummary = DutchSummary(json["dutchSummary"])
     }
+}
+
+enum DutchPaymentStatus: CaseIterable {
+    case notReceivedMoney
+    case sendingRequest
+    case sentRequestAgain
+    case receivedMoney
 }
