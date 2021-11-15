@@ -23,20 +23,18 @@ class ApiRequestManager {
 }
 
 extension ApiRequestManager {
+<<<<<<< HEAD
     enum Router: URLConvertible {
+=======
+    enum Router: URLRequestConvertible {
+        static let baseURLString = "https://ek7b8b8yq2.execute-api.us-east-2.amazonaws.com"
+>>>>>>> api manager router update
         case dutchPayList
         
         var httpMethod: Alamofire.HTTPMethod {
             switch self {
             case .dutchPayList:
                 return .get
-            }
-        }
-        
-        var baseUrl: URL {
-            switch self {
-            case .dutchPayList:
-                return ApiRequestManager.shared.host
             }
         }
         
@@ -50,13 +48,15 @@ extension ApiRequestManager {
         var path: String {
             switch self {
             case .dutchPayList:
-                return "/toss_ios_homework_dutch_detail"
+                return "\(home)/toss_ios_homework_dutch_detail"
             }
         }
         
-        var url: URL {
-            let resultUrl = baseUrl.appendingPathComponent(path)
-            return resultUrl
+        func asURLRequest() throws -> URLRequest {
+            let baseUrl = try Router.baseURLString.asURL()
+            var urlRequest = URLRequest(url: baseUrl.appendingPathComponent(path))
+            urlRequest.httpMethod = httpMethod.rawValue
+            return urlRequest
         }
         
         func asURL() throws -> URL {
