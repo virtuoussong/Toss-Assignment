@@ -23,7 +23,7 @@ class ApiRequestManager {
 }
 
 extension ApiRequestManager {
-    enum Router {
+    enum Router: URLConvertible {
         case dutchPayList
         
         var httpMethod: Alamofire.HTTPMethod {
@@ -57,6 +57,10 @@ extension ApiRequestManager {
         var url: URL {
             let resultUrl = baseUrl.appendingPathComponent(path)
             return resultUrl
+        }
+        
+        func asURL() throws -> URL {
+            return self.url
         }
     }
 }

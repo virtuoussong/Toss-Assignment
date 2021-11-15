@@ -9,7 +9,16 @@
 import Foundation
 
 final class DutchPayService {
+    
+    private let requestManager: ApiRequestManager
+    
+    init(requestManager: ApiRequestManager) {
+        self.requestManager = requestManager
+    }
+    
     func fetchDutchPayment() {
-        
+        let endPoint = ApiRequestManager.Router.dutchPayList.asURL()
+        self.requestManager.manager
+            .request(endPoint)
     }
 }
