@@ -10,6 +10,8 @@ target 'tosshomeworkSample' do
   
   # Rx
   pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'RxDataSources'
   
   # UI
   pod 'SnapKit'

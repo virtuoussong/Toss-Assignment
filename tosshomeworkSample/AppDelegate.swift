@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let dutchPayApiService = DutchPayService(requestManager: .shared)
         let dutchPayViewModel = DutchPayViewModel(requestService: dutchPayApiService)
         let initialViewController = DutchPayViewController(viewModel: dutchPayViewModel)
-        
+
         let navigationController = UINavigationController(rootViewController: initialViewController)
         self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()

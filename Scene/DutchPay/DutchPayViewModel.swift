@@ -7,25 +7,47 @@
 //
 
 import Foundation
-import RxSwift
 
 final class DutchPayViewModel {
+    // MARK: Property
     private let requestService: DutchPayService
+    var dutchPayData: Observable<DutchPayData?> = Observable(nil)
     
+    // MARK: Initialization
     init(requestService: DutchPayService) {
         self.requestService = requestService
+        self.loadInitialDutchPayData()
     }
     
-    func fetchDutchPayData() {
+    private func loadInitialDutchPayData() {
+        if self.isNewDataRequested() {
+            self.fetchDutchPayData()
+        } else {
+            self.fetchDutchPayDataFromCache()
+        }
+    }
+    
+    private func isNewDataRequested() -> Bool {
+        return true
+    }
+    
+    private func fetchDutchPayDataFromCache() {
+        
+    }
+    
+    private func fetchDutchPayData() {
         self.requestService.fetchDutchPayment { [weak self] result in
+            guard let `self` = self else { return }
             switch result {
             case .success(let data):
-                print(data)
+                self.dutchPayData.value = data
             case .failure(let error):
                 print(error)
             }
         }
     }
     
-    
+    func refreshDutchPayData() {
+        self.fetchDutchPayData()
+    }
 }
