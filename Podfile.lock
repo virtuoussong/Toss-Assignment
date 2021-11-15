@@ -2,23 +2,27 @@ PODS:
   - Alamofire (5.1.0)
   - RxSwift (6.2.0)
   - SnapKit (5.0.1)
+  - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
   - Alamofire
   - RxSwift
   - SnapKit
+  - SwiftyJSON
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - RxSwift
     - SnapKit
+    - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: 9d5c5f602928e512395b30950c5984eca840093c
   RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 8a793a8d1d7baeb0e80296f30596ee1e2cd6ffe3
+PODFILE CHECKSUM: 4cc4e2f318e0ce4316ef8a399ade03d8c9e09e5c
 
 COCOAPODS: 1.11.2

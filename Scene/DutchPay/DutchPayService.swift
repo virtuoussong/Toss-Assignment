@@ -8,15 +8,33 @@
 
 import Foundation
 
-final class DutchPayService {
+class DutchPayService {
     
-    private let requestManager: ApiRequestManager
+    let requestManager: ApiRequestManager
     
     init(requestManager: ApiRequestManager) {
         self.requestManager = requestManager
     }
     
-    func fetchDutchPayment() {
-        
+    func fetchDutchPayment(completion: @escaping (Result<DutchPayData, Error>) -> Void) {
+        do {
+            let endPoint = try ApiRequestManager.Router.dutchPayList.asURLRequest()
+            self.requestManager.manager
+                .request(endPoint)
+                .validate()
+                .responseJSON { response in
+                    let result = response.mapResult { json in
+                        return DutchPayData(json)
+                    }
+                    completion(result)
+                }
+        } catch {
+            print(error)
+        }
+                            
     }
 }
+
+
+
+

@@ -6,6 +6,7 @@ target 'tosshomeworkSample' do
   
   # Networking
   pod 'Alamofire'
+  pod 'SwiftyJSON'
   
   # Rx
   pod 'RxSwift'

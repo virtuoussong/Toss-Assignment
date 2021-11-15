@@ -13,6 +13,21 @@ class DutchPayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .red
+        
+        getdata()
+    }
+    
+    let apiService = DutchPayService(requestManager: .shared)
+    
+    func getdata() {
+        apiService.fetchDutchPayment { [weak self] result in
+            switch result {
+            case .success(let data):
+                print(data)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
 
