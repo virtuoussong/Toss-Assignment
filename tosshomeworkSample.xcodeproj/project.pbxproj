@@ -8,19 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		08CC510E2295A8C200ABC69E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CC510D2295A8C200ABC69E /* AppDelegate.swift */; };
-		08CC51102295A8C200ABC69E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CC510F2295A8C200ABC69E /* ViewController.swift */; };
 		08CC51152295A8C300ABC69E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08CC51142295A8C300ABC69E /* Assets.xcassets */; };
 		08CC51182295A8C300ABC69E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08CC51162295A8C300ABC69E /* LaunchScreen.storyboard */; };
 		08CC51232295A8C300ABC69E /* tosshomeworkSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CC51222295A8C300ABC69E /* tosshomeworkSampleTests.swift */; };
 		08CC512E2295A8C300ABC69E /* tosshomeworkSampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CC512D2295A8C300ABC69E /* tosshomeworkSampleUITests.swift */; };
 		08CC513C2295B10200ABC69E /* cached_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 08CC513B2295B10200ABC69E /* cached_data.json */; };
 		08CC513E2295B10D00ABC69E /* ProgressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CC513D2295B10D00ABC69E /* ProgressButton.swift */; };
+		3A44E8620FB813185A040904 /* Pods_tosshomeworkSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2F4FEF605CF6D879E139373 /* Pods_tosshomeworkSample.framework */; };
+		CBB500E5BB4618FD1B16EB4B /* Pods_tosshomeworkSample_tosshomeworkSampleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E16BF55ED23CD4C34940D6B1 /* Pods_tosshomeworkSample_tosshomeworkSampleUITests.framework */; };
 		DEDB62E52742253900833F16 /* DutchPayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDB62E42742253900833F16 /* DutchPayViewController.swift */; };
 		DEDB62EA2742258700833F16 /* DutchPayCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDB62E92742258700833F16 /* DutchPayCollectionViewCell.swift */; };
 		DEDB62EF274225DC00833F16 /* DutchPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDB62EE274225DC00833F16 /* DutchPayViewModel.swift */; };
 		DEDB62F42742260200833F16 /* DutchPayUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDB62F32742260200833F16 /* DutchPayUser.swift */; };
 		DEDB62FC2742265600833F16 /* DutchPayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDB62FB2742265600833F16 /* DutchPayService.swift */; };
 		DEDB63032742268B00833F16 /* ApiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDB63022742268B00833F16 /* ApiRequest.swift */; };
+		DEDB6319274233D600833F16 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDB6318274233D600833F16 /* ApiManager.swift */; };
+		F0DBCDDBBEB89B5BA8C39A13 /* Pods_tosshomeworkSampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3F9A692DE0038BDF3AB39EF /* Pods_tosshomeworkSampleTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,7 +46,6 @@
 /* Begin PBXFileReference section */
 		08CC510A2295A8C200ABC69E /* tosshomeworkSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tosshomeworkSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08CC510D2295A8C200ABC69E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		08CC510F2295A8C200ABC69E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		08CC51142295A8C300ABC69E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		08CC51172295A8C300ABC69E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		08CC51192295A8C300ABC69E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -55,12 +57,22 @@
 		08CC512F2295A8C300ABC69E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		08CC513B2295B10200ABC69E /* cached_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cached_data.json; sourceTree = "<group>"; };
 		08CC513D2295B10D00ABC69E /* ProgressButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressButton.swift; sourceTree = "<group>"; };
+		31F507D242DB069873977A36 /* Pods-tosshomeworkSampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tosshomeworkSampleTests.release.xcconfig"; path = "Target Support Files/Pods-tosshomeworkSampleTests/Pods-tosshomeworkSampleTests.release.xcconfig"; sourceTree = "<group>"; };
+		4A4F688E8BF821F930246626 /* Pods-tosshomeworkSample-tosshomeworkSampleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tosshomeworkSample-tosshomeworkSampleUITests.debug.xcconfig"; path = "Target Support Files/Pods-tosshomeworkSample-tosshomeworkSampleUITests/Pods-tosshomeworkSample-tosshomeworkSampleUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		542310979BCA5F03681EA383 /* Pods-tosshomeworkSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tosshomeworkSample.release.xcconfig"; path = "Target Support Files/Pods-tosshomeworkSample/Pods-tosshomeworkSample.release.xcconfig"; sourceTree = "<group>"; };
+		63964CD016CE8F544D79F53D /* Pods-tosshomeworkSample-tosshomeworkSampleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tosshomeworkSample-tosshomeworkSampleUITests.release.xcconfig"; path = "Target Support Files/Pods-tosshomeworkSample-tosshomeworkSampleUITests/Pods-tosshomeworkSample-tosshomeworkSampleUITests.release.xcconfig"; sourceTree = "<group>"; };
+		976A0659871D5297B135E68C /* Pods-tosshomeworkSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tosshomeworkSample.debug.xcconfig"; path = "Target Support Files/Pods-tosshomeworkSample/Pods-tosshomeworkSample.debug.xcconfig"; sourceTree = "<group>"; };
+		B3F9A692DE0038BDF3AB39EF /* Pods_tosshomeworkSampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tosshomeworkSampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2F4FEF605CF6D879E139373 /* Pods_tosshomeworkSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tosshomeworkSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEDB62E42742253900833F16 /* DutchPayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DutchPayViewController.swift; sourceTree = "<group>"; };
 		DEDB62E92742258700833F16 /* DutchPayCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DutchPayCollectionViewCell.swift; sourceTree = "<group>"; };
 		DEDB62EE274225DC00833F16 /* DutchPayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DutchPayViewModel.swift; sourceTree = "<group>"; };
 		DEDB62F32742260200833F16 /* DutchPayUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DutchPayUser.swift; sourceTree = "<group>"; };
 		DEDB62FB2742265600833F16 /* DutchPayService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DutchPayService.swift; sourceTree = "<group>"; };
 		DEDB63022742268B00833F16 /* ApiRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRequest.swift; sourceTree = "<group>"; };
+		DEDB6318274233D600833F16 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		E16BF55ED23CD4C34940D6B1 /* Pods_tosshomeworkSample_tosshomeworkSampleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tosshomeworkSample_tosshomeworkSampleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7E7A087331088F7C739DCCE /* Pods-tosshomeworkSampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tosshomeworkSampleTests.debug.xcconfig"; path = "Target Support Files/Pods-tosshomeworkSampleTests/Pods-tosshomeworkSampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A44E8620FB813185A040904 /* Pods_tosshomeworkSample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0DBCDDBBEB89B5BA8C39A13 /* Pods_tosshomeworkSampleTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,20 +96,34 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBB500E5BB4618FD1B16EB4B /* Pods_tosshomeworkSample_tosshomeworkSampleUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		02D2EB337D811AD9A8D9B7F6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C2F4FEF605CF6D879E139373 /* Pods_tosshomeworkSample.framework */,
+				E16BF55ED23CD4C34940D6B1 /* Pods_tosshomeworkSample_tosshomeworkSampleUITests.framework */,
+				B3F9A692DE0038BDF3AB39EF /* Pods_tosshomeworkSampleTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		08CC51012295A8C200ABC69E = {
 			isa = PBXGroup;
 			children = (
+				DEDB63002742265D00833F16 /* Module */,
 				DEDB62E2274224EA00833F16 /* Scene */,
 				08CC510C2295A8C200ABC69E /* tosshomeworkSample */,
 				08CC51212295A8C300ABC69E /* tosshomeworkSampleTests */,
 				08CC512C2295A8C300ABC69E /* tosshomeworkSampleUITests */,
 				08CC510B2295A8C200ABC69E /* Products */,
+				D511CF6942F8D7FC7A855E4E /* Pods */,
+				02D2EB337D811AD9A8D9B7F6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -112,9 +140,7 @@
 		08CC510C2295A8C200ABC69E /* tosshomeworkSample */ = {
 			isa = PBXGroup;
 			children = (
-				08CC513D2295B10D00ABC69E /* ProgressButton.swift */,
 				08CC510D2295A8C200ABC69E /* AppDelegate.swift */,
-				08CC510F2295A8C200ABC69E /* ViewController.swift */,
 				08CC51142295A8C300ABC69E /* Assets.xcassets */,
 				08CC51162295A8C300ABC69E /* LaunchScreen.storyboard */,
 				08CC513B2295B10200ABC69E /* cached_data.json */,
@@ -141,10 +167,22 @@
 			path = tosshomeworkSampleUITests;
 			sourceTree = "<group>";
 		};
+		D511CF6942F8D7FC7A855E4E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				976A0659871D5297B135E68C /* Pods-tosshomeworkSample.debug.xcconfig */,
+				542310979BCA5F03681EA383 /* Pods-tosshomeworkSample.release.xcconfig */,
+				4A4F688E8BF821F930246626 /* Pods-tosshomeworkSample-tosshomeworkSampleUITests.debug.xcconfig */,
+				63964CD016CE8F544D79F53D /* Pods-tosshomeworkSample-tosshomeworkSampleUITests.release.xcconfig */,
+				E7E7A087331088F7C739DCCE /* Pods-tosshomeworkSampleTests.debug.xcconfig */,
+				31F507D242DB069873977A36 /* Pods-tosshomeworkSampleTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		DEDB62E2274224EA00833F16 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				DEDB63002742265D00833F16 /* Module */,
 				DEDB62E3274224FB00833F16 /* DutchPay */,
 			);
 			path = Scene;
@@ -165,6 +203,7 @@
 		DEDB63002742265D00833F16 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				DEDB631327422E5200833F16 /* Common UI Component */,
 				DEDB63012742266500833F16 /* API */,
 			);
 			path = Module;
@@ -174,8 +213,25 @@
 			isa = PBXGroup;
 			children = (
 				DEDB63022742268B00833F16 /* ApiRequest.swift */,
+				DEDB6318274233D600833F16 /* ApiManager.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		DEDB631327422E5200833F16 /* Common UI Component */ = {
+			isa = PBXGroup;
+			children = (
+				DEDB631427422E6900833F16 /* Button */,
+			);
+			path = "Common UI Component";
+			sourceTree = "<group>";
+		};
+		DEDB631427422E6900833F16 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				08CC513D2295B10D00ABC69E /* ProgressButton.swift */,
+			);
+			path = Button;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,9 +241,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 08CC51322295A8C300ABC69E /* Build configuration list for PBXNativeTarget "tosshomeworkSample" */;
 			buildPhases = (
+				7A49F86E7BA5F3BA451F34AD /* [CP] Check Pods Manifest.lock */,
 				08CC51062295A8C200ABC69E /* Sources */,
 				08CC51072295A8C200ABC69E /* Frameworks */,
 				08CC51082295A8C200ABC69E /* Resources */,
+				0B8B9DC6E77AF2A1F7E9F497 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -202,6 +260,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 08CC51352295A8C300ABC69E /* Build configuration list for PBXNativeTarget "tosshomeworkSampleTests" */;
 			buildPhases = (
+				FE9250FEFDFC4B88EECF219A /* [CP] Check Pods Manifest.lock */,
 				08CC511A2295A8C300ABC69E /* Sources */,
 				08CC511B2295A8C300ABC69E /* Frameworks */,
 				08CC511C2295A8C300ABC69E /* Resources */,
@@ -220,9 +279,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 08CC51382295A8C300ABC69E /* Build configuration list for PBXNativeTarget "tosshomeworkSampleUITests" */;
 			buildPhases = (
+				F1DD9A2B8D4F5C34249502B7 /* [CP] Check Pods Manifest.lock */,
 				08CC51252295A8C300ABC69E /* Sources */,
 				08CC51262295A8C300ABC69E /* Frameworks */,
 				08CC51272295A8C300ABC69E /* Resources */,
+				571473E1ACE484D8942956D7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -307,18 +368,121 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0B8B9DC6E77AF2A1F7E9F497 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-tosshomeworkSample/Pods-tosshomeworkSample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-tosshomeworkSample/Pods-tosshomeworkSample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-tosshomeworkSample/Pods-tosshomeworkSample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		571473E1ACE484D8942956D7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-tosshomeworkSample-tosshomeworkSampleUITests/Pods-tosshomeworkSample-tosshomeworkSampleUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-tosshomeworkSample-tosshomeworkSampleUITests/Pods-tosshomeworkSample-tosshomeworkSampleUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-tosshomeworkSample-tosshomeworkSampleUITests/Pods-tosshomeworkSample-tosshomeworkSampleUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7A49F86E7BA5F3BA451F34AD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-tosshomeworkSample-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F1DD9A2B8D4F5C34249502B7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-tosshomeworkSample-tosshomeworkSampleUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FE9250FEFDFC4B88EECF219A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-tosshomeworkSampleTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		08CC51062295A8C200ABC69E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				DEDB62E52742253900833F16 /* DutchPayViewController.swift in Sources */,
+				DEDB6319274233D600833F16 /* ApiManager.swift in Sources */,
 				DEDB62EA2742258700833F16 /* DutchPayCollectionViewCell.swift in Sources */,
 				DEDB62EF274225DC00833F16 /* DutchPayViewModel.swift in Sources */,
 				DEDB62FC2742265600833F16 /* DutchPayService.swift in Sources */,
 				08CC513E2295B10D00ABC69E /* ProgressButton.swift in Sources */,
 				DEDB63032742268B00833F16 /* ApiRequest.swift in Sources */,
-				08CC51102295A8C200ABC69E /* ViewController.swift in Sources */,
 				08CC510E2295A8C200ABC69E /* AppDelegate.swift in Sources */,
 				DEDB62F42742260200833F16 /* DutchPayUser.swift in Sources */,
 			);
@@ -487,6 +651,7 @@
 		};
 		08CC51332295A8C300ABC69E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 976A0659871D5297B135E68C /* Pods-tosshomeworkSample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -504,6 +669,7 @@
 		};
 		08CC51342295A8C300ABC69E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 542310979BCA5F03681EA383 /* Pods-tosshomeworkSample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -521,6 +687,7 @@
 		};
 		08CC51362295A8C300ABC69E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E7E7A087331088F7C739DCCE /* Pods-tosshomeworkSampleTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -541,6 +708,7 @@
 		};
 		08CC51372295A8C300ABC69E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 31F507D242DB069873977A36 /* Pods-tosshomeworkSampleTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -561,6 +729,7 @@
 		};
 		08CC51392295A8C300ABC69E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4A4F688E8BF821F930246626 /* Pods-tosshomeworkSample-tosshomeworkSampleUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -580,6 +749,7 @@
 		};
 		08CC513A2295A8C300ABC69E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 63964CD016CE8F544D79F53D /* Pods-tosshomeworkSample-tosshomeworkSampleUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
