@@ -17,8 +17,6 @@ final class DutchPayService {
     }
     
     func fetchDutchPayment() {
-        let endPoint = ApiRequestManager.Router.dutchPayList.asURL()
-        self.requestManager.manager
-            .request(endPoint)
+        
     }
 }
