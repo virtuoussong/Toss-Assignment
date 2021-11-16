@@ -20,9 +20,19 @@ final class DutchPayViewController: UIViewController {
     
     // MARK: UI Compoenent
     lazy var collectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: UICollectionViewFlowLayout())
-        collectionView.register(DutchPayCollectionViewCell.self, forCellWithReuseIdentifier: CellId.cell)
-        collectionView.register(DutchPayCollectionViewHeaderCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CellId.header)
+        let collectionView = UICollectionView(
+            frame: self.view.frame,
+            collectionViewLayout: UICollectionViewFlowLayout()
+        )
+        collectionView.register(
+            DutchPayCollectionViewCell.self,
+            forCellWithReuseIdentifier: CellId.cell
+        )
+        collectionView.register(
+            DutchPayCollectionViewHeaderCell.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: CellId.header
+        )
         collectionView.backgroundColor = .white
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -85,8 +95,19 @@ extension DutchPayViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        let size = CGSize(width: self.view.frame.width, height: 100)
-        return size
+
+        let indexPath = IndexPath(row: 0, section: section)
+        if let headerView = self.collectionView(collectionView, viewForSupplementaryElementOfKind: UICollectionView.elementKindSectionHeader, at: indexPath) as? DutchPayCollectionViewHeaderCell {
+
+            let height = headerView.contentView.systemLayoutSizeFitting(UIView.layoutFittingExpandedSize).height
+
+            return CGSize(width: self.view.frame.width, height: height)
+
+        } else {
+            return CGSize(width: 0, height: 0)
+        }
+
+        
     }
 }
 

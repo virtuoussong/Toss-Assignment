@@ -90,7 +90,7 @@ class DutchPayCollectionViewCell: UICollectionViewCell {
         
         self.nameLable.text = name
         
-        self.amountLabel.text = data.amount?.formatToCurrencyWon
+        self.amountLabel.text = "\(data.amount?.formatToCurrencyWon ?? "")원"
         
         self.messageLabel.text = data.transferMessage
         

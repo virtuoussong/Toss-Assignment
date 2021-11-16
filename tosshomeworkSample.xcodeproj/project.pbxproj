@@ -30,6 +30,7 @@
 		DEE4F07A2742C52D0060025D /* Int16.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE4F0792742C52D0060025D /* Int16.swift */; };
 		DEE4F07F2742D2110060025D /* DutchPayRequestButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE4F07E2742D2110060025D /* DutchPayRequestButton.swift */; };
 		DEE4F0842742DB6B0060025D /* CaseIterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE4F0832742DB6B0060025D /* CaseIterable.swift */; };
+		DEE4F08C27431CE50060025D /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE4F08B27431CE40060025D /* String.swift */; };
 		F0DBCDDBBEB89B5BA8C39A13 /* Pods_tosshomeworkSampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3F9A692DE0038BDF3AB39EF /* Pods_tosshomeworkSampleTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -85,6 +86,7 @@
 		DEE4F0792742C52D0060025D /* Int16.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int16.swift; sourceTree = "<group>"; };
 		DEE4F07E2742D2110060025D /* DutchPayRequestButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DutchPayRequestButton.swift; sourceTree = "<group>"; };
 		DEE4F0832742DB6B0060025D /* CaseIterable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseIterable.swift; sourceTree = "<group>"; };
+		DEE4F08B27431CE40060025D /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		E16BF55ED23CD4C34940D6B1 /* Pods_tosshomeworkSample_tosshomeworkSampleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tosshomeworkSample_tosshomeworkSampleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7E7A087331088F7C739DCCE /* Pods-tosshomeworkSampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tosshomeworkSampleTests.debug.xcconfig"; path = "Target Support Files/Pods-tosshomeworkSampleTests/Pods-tosshomeworkSampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -207,11 +209,11 @@
 			children = (
 				DEE4F0702742ADD50060025D /* UI Components */,
 				DEDB62E42742253900833F16 /* DutchPayViewController.swift */,
+				DEE4F062274290EE0060025D /* DutchPayCollectionViewHeaderCell.swift */,
 				DEDB62E92742258700833F16 /* DutchPayCollectionViewCell.swift */,
 				DEDB62EE274225DC00833F16 /* DutchPayViewModel.swift */,
 				DEDB62F32742260200833F16 /* DutchPayData.swift */,
 				DEDB62FB2742265600833F16 /* DutchPayService.swift */,
-				DEE4F062274290EE0060025D /* DutchPayCollectionViewHeaderCell.swift */,
 			);
 			path = DutchPay;
 			sourceTree = "<group>";
@@ -258,6 +260,7 @@
 				DEE4EFF2274263020060025D /* DataResponse */,
 				DEE4F0792742C52D0060025D /* Int16.swift */,
 				DEE4F0832742DB6B0060025D /* CaseIterable.swift */,
+				DEE4F08B27431CE40060025D /* String.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -536,6 +539,7 @@
 				DEE4F0722742AE0B0060025D /* DutchPayUserFirstNameView.swift in Sources */,
 				DEDB62EA2742258700833F16 /* DutchPayCollectionViewCell.swift in Sources */,
 				DEDB62EF274225DC00833F16 /* DutchPayViewModel.swift in Sources */,
+				DEE4F08C27431CE50060025D /* String.swift in Sources */,
 				DEE4F0692742A1580060025D /* Observable.swift in Sources */,
 				DEE4F07A2742C52D0060025D /* Int16.swift in Sources */,
 				DEDB62FC2742265600833F16 /* DutchPayService.swift in Sources */,

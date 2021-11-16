@@ -15,7 +15,7 @@ extension Int16 {
         formattedNumber.numberStyle = .decimal
         formattedNumber.groupingSeparator = ","
         if let formattedString = formattedNumber.string(for: self) {
-            let result = "\(String(describing: formattedString))원"
+            let result = "\(String(describing: formattedString))"
             return result
         } else {
             return ""
