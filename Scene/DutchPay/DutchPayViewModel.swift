@@ -24,19 +24,15 @@ final class DutchPayViewModel {
     }
     
     private func loadInitialDutchPayData() {
-        if self.isNewDataRequested() {
+        if UserDefaultUtil.isDataFetchedFromApi() {
             self.fetchDutchPayData()
         } else {
             self.fetchDutchPayDataFromCache()
         }
     }
     
-    private func isNewDataRequested() -> Bool {
-        return true
-    }
-    
     private func fetchDutchPayDataFromCache() {
-        
+        print("cache data")
     }
     
     private func fetchDutchPayData() {
@@ -45,6 +41,7 @@ final class DutchPayViewModel {
             switch result {
             case .success(let data):
                 self.dutchPayData.value = data
+                UserDefaultUtil.setIsDataFetchedFromApi()
             case .failure(let error):
                 self.fetchErrorHandler?(error)
                 print(error)

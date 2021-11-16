@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-class DutchPayCollectionViewCell: UICollectionViewCell {
+final class DutchPayCollectionViewCell: UICollectionViewCell {
     
     // MARK: UI Component
     private let nameLable: UILabel = {

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class DutchPayFetErrorView: UIView {
+final class DutchPayFetErrorView: UIView {
     
     let errorMessageLabel: UILabel = {
         let r = UILabel()

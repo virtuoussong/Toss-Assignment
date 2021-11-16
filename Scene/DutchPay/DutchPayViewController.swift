@@ -19,7 +19,7 @@ final class DutchPayViewController: UIViewController {
     }
     
     // MARK: UI Compoenent
-    lazy var collectionView: UICollectionView = {
+    private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(
             frame: self.view.frame,
             collectionViewLayout: UICollectionViewFlowLayout()
@@ -39,7 +39,7 @@ final class DutchPayViewController: UIViewController {
         return collectionView
     }()
     
-    let refreshController = UIRefreshControl()
+    private let refreshController = UIRefreshControl()
     
     var errorView: DutchPayFetErrorView?
     
@@ -161,8 +161,6 @@ extension DutchPayViewController: UICollectionViewDelegateFlowLayout {
         } else {
             return CGSize(width: 0, height: 0)
         }
-
-        
     }
 }
 

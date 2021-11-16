@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class DutchPayCollectionViewHeaderCell: UICollectionViewCell {
+final class DutchPayCollectionViewHeaderCell: UICollectionViewCell {
     
     // MARK: UI Component
     private let dateLabel: UILabel = {
