@@ -79,8 +79,12 @@ final class DutchPayCollectionViewCell: UICollectionViewCell {
         
     var requestPaymentButtonTapHandler: ((DutchPaymentStatus) -> Void)?
     
+    var requestCancelHandler: (() -> Void)?
+    
     var progressButtonAnimationHandler: (() -> Void)?
     
+    var isAnimatingHandlier: ((Bool) -> Void)?
+        
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubviews()
@@ -117,8 +121,8 @@ final class DutchPayCollectionViewCell: UICollectionViewCell {
             self.amountLabel.textColor = .black
         }
         
-        self.requestButton.configureRequestState(paymentStatus: data.paymentStatus)
         self.configureRequestAndProgressbutton()
+        
         self.addComponentToContentStackView()
         
         if data.isAd {
@@ -129,14 +133,18 @@ final class DutchPayCollectionViewCell: UICollectionViewCell {
     }
     
     private func configureRequestAndProgressbutton() {
+        self.requestButton.paymentStatus = self.paymentStatus
+        
         switch self.paymentStatus {
         case .sendingRequest:
             self.progressAnimationButton.isHidden = false
             self.requestButton.isHidden = true
-            self.progressButtonAnimationHandler?()
+            
+            self.progressAnimationButton.animate(from: 0)
             
         case .notReceivedMoney, .sentRequestAgain, .receivedMoney:
             self.progressAnimationButton.isHidden = true
+            self.progressAnimationButton.cancel()
             self.requestButton.isHidden = false
         }
     }
@@ -212,13 +220,14 @@ final class DutchPayCollectionViewCell: UICollectionViewCell {
     }
     
     @objc private func requestButtonDidTap() {
-        guard self.paymentStatus == .notReceivedMoney else {
+        guard self.paymentStatus != .receivedMoney else {
             return
         }
         self.requestPaymentButtonTapHandler?(self.paymentStatus)
     }
     
     @objc private func progressButtonDidTap() {
-        
+        self.progressAnimationButton.cancel()
+        self.requestCancelHandler?()
     }
 }

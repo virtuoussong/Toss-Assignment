@@ -86,15 +86,6 @@ final class DutchPayViewController: UIViewController {
         }
     }
     
-    private func animateProgressButton() {
-        if let cell = self.collectionView.cellForItem(at: IndexPath(item: 0, section: 0)) as? DutchPayCollectionViewCell {
-            let data = self.viewModel.dutchPayData.value?.dutchDetailList?[0]
-            if data?.paymentStatus == .sendingRequest {
-                cell.progressAnimationButton.animate(from: 0)
-            }
-        }
-    }
-    
     private func configureViewModel() {
         self.viewModel.fetchErrorHandler = { [weak self] error in
             guard let `self` = self else { return }
@@ -142,6 +133,64 @@ final class DutchPayViewController: UIViewController {
         self.errorView = nil
         self.collectionView.isHidden = false
     }
+    
+    private func alertRequestPaymentUnable() {
+        let alert = UIAlertController(title: "이미 요청 하였습니다", message: "한번 요청 하시면 다시 할 수 없습니다.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
+        self.present(alert, animated: true)
+    }
+}
+
+extension DutchPayViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellId.cell, for: indexPath) as? DutchPayCollectionViewCell {
+            let data: DutchPayData.DutchDetail? = self.viewModel.dutchPayData.value?.dutchDetailList?[indexPath.item]
+            
+            cell.configure(data: data)
+            
+            cell.requestPaymentButtonTapHandler = { [weak self] status in
+                guard let `self` = self else { return }
+                guard status != .sentRequestAgain else {
+                    self.alertRequestPaymentUnable()
+                    return
+                }
+                self.viewModel.updatePaymentStatus(index: indexPath.item)
+            }
+            
+            cell.requestCancelHandler = { [weak self] in
+                guard let `self` = self else { return }
+                self.viewModel.requestCanceled(index: indexPath.item)
+            }
+            
+            cell.isAnimatingHandlier = { [weak self] bool in
+                guard let `self` = self else { return }
+                self.viewModel.updateIsAnimatingNow(isAnimating: bool, index: indexPath.item)
+            }
+            
+            return cell
+        } else {
+            fatalError()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.viewModel.dutchPayData.value?.dutchDetailList?.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            if let cell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CellId.header, for: indexPath) as? DutchPayCollectionViewHeaderCell {
+                let data = self.viewModel.dutchPayData.value?.dutchSummary
+                cell.configure(data: data)
+                return cell
+            } else {
+                fatalError()
+            }
+        default:
+            fatalError()
+        }
+    }
 }
 
 extension DutchPayViewController: UICollectionViewDelegateFlowLayout {
@@ -161,44 +210,6 @@ extension DutchPayViewController: UICollectionViewDelegateFlowLayout {
 
         } else {
             return CGSize(width: 0, height: 0)
-        }
-    }
-}
-
-extension DutchPayViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.viewModel.dutchPayData.value?.dutchDetailList?.count ?? 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellId.cell, for: indexPath) as? DutchPayCollectionViewCell {
-            let data: DutchPayData.DutchDetail? = self.viewModel.dutchPayData.value?.dutchDetailList?[indexPath.item]
-            
-            cell.configure(data: data)
-            
-            cell.requestPaymentButtonTapHandler = { [weak self] status in
-                guard let `self` = self else { return }
-                self.viewModel.updatePaymentStatus(index: indexPath.item)
-            }
-            
-            return cell
-        } else {
-            fatalError()
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        switch kind {
-        case UICollectionView.elementKindSectionHeader:
-            if let cell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CellId.header, for: indexPath) as? DutchPayCollectionViewHeaderCell {
-                let data = self.viewModel.dutchPayData.value?.dutchSummary
-                cell.configure(data: data)
-                return cell
-            } else {
-                fatalError()
-            }
-        default:
-            fatalError()
         }
     }
 }

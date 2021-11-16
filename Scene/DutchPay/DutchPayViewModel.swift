@@ -78,6 +78,14 @@ final class DutchPayViewModel {
         self.dutchPayData.value?.dutchDetailList?[index].updatePaymentStatus()
     }
     
+    func requestCanceled(index: Int) {
+        self.dutchPayData.value?.dutchDetailList?[index].requestCanceled()
+    }
+    
+    func updateIsAnimatingNow(isAnimating: Bool, index: Int) {
+        self.dutchPayData.value?.dutchDetailList?[index].isAnimationNow = isAnimating
+    }
+    
     private func importJsonFile() -> DutchPayData? {
         if let path = Bundle.main.path(forResource: "cached_data", ofType: "json") {
             do {

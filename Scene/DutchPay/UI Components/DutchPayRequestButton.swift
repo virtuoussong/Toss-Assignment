@@ -16,10 +16,6 @@ final class DutchPayRequestButton: UIButton {
         }
     }
     
-    func configureRequestState(paymentStatus: DutchPaymentStatus) {
-        self.paymentStatus = paymentStatus
-    }
-    
     private func setContentsForDidNotReceiveMoney() {
         self.setTitle("재요청", for: .normal)
         self.setTitleColor(.blue, for: .normal)
@@ -37,7 +33,7 @@ final class DutchPayRequestButton: UIButton {
     private func setContnentsForDidReceiveeMoney() {
         self.setTitle("완료", for: .disabled)
         self.setTitleColor(.black, for: .disabled)
-        self.isEnabled = false
+        self.isEnabled = true
         self.isHidden = false
     }
     
