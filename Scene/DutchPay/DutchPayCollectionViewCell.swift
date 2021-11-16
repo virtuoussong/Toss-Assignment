@@ -10,6 +10,10 @@ import Foundation
 import UIKit
 import SnapKit
 
+protocol DutchPayCollectionViewCellDelegate: AnyObject {
+    func dutchPayCollectionViewCellAnimateProgress(collectionView: DutchPayCollectionViewCell)
+}
+
 final class DutchPayCollectionViewCell: UICollectionViewCell {
     
     // MARK: UI Component
@@ -83,8 +87,8 @@ final class DutchPayCollectionViewCell: UICollectionViewCell {
     
     var progressButtonAnimationHandler: (() -> Void)?
     
-    var isAnimatingHandlier: ((Bool) -> Void)?
-        
+    weak var delegate: DutchPayCollectionViewCellDelegate?
+            
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubviews()
@@ -132,15 +136,14 @@ final class DutchPayCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    private func configureRequestAndProgressbutton() {
+    func configureRequestAndProgressbutton() {
         self.requestButton.paymentStatus = self.paymentStatus
         
         switch self.paymentStatus {
         case .sendingRequest:
             self.progressAnimationButton.isHidden = false
             self.requestButton.isHidden = true
-            
-            self.progressAnimationButton.animate(from: 0)
+            self.delegate?.dutchPayCollectionViewCellAnimateProgress(collectionView: self)
             
         case .notReceivedMoney, .sentRequestAgain, .receivedMoney:
             self.progressAnimationButton.isHidden = true

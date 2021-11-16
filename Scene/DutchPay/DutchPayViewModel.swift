@@ -9,15 +9,18 @@
 import Foundation
 import SwiftyJSON
 
+typealias PaymentRequestedUserAndTime = [Int: Date]
+
 final class DutchPayViewModel {
     // MARK: Property
     private let requestService: DutchPayService
     
     var dutchPayData: Observable<DutchPayData?> = Observable(nil)
     
+    var paymentRequestedIdList: PaymentRequestedUserAndTime = [:]
+    
     var fetchErrorHandler: ((Error) -> Void)?
-    
-    
+        
     // MARK: Initialization
     init(requestService: DutchPayService) {
         self.requestService = requestService
@@ -74,16 +77,18 @@ final class DutchPayViewModel {
         self.fetchDutchPayData()
     }
     
-    func updatePaymentStatus(index: Int) {
-        self.dutchPayData.value?.dutchDetailList?[index].updatePaymentStatus()
+    func updatePaymentStatusToNextCase(index: Int) {
+        self.dutchPayData.value?.dutchDetailList?[index].updatePaymentStatusToNextCase()
+    }
+    
+    func updatePaymentStatusToNextCase(dutchId: Int) {
+        if let index = self.dutchPayData.value?.dutchDetailList?.firstIndex(where: { $0.dutchId == dutchId }) {
+            self.dutchPayData.value?.dutchDetailList?[index].updatePaymentStatusToNextCase()
+        }
     }
     
     func requestCanceled(index: Int) {
         self.dutchPayData.value?.dutchDetailList?[index].requestCanceled()
-    }
-    
-    func updateIsAnimatingNow(isAnimating: Bool, index: Int) {
-        self.dutchPayData.value?.dutchDetailList?[index].isAnimationNow = isAnimating
     }
     
     private func importJsonFile() -> DutchPayData? {
@@ -101,5 +106,16 @@ final class DutchPayViewModel {
             print("invalid address")
             return nil
         }
+    }
+    
+    func inserRequestedDutchId(id: Int, date: Date) {
+        self.paymentRequestedIdList[id] = date
+    }
+    
+    func getRequestedTime(id: Int) -> Date? {
+        if let time = self.paymentRequestedIdList[id] {
+            return time
+        }
+        return nil
     }
 }

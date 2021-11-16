@@ -8,8 +8,6 @@
 
 import Foundation
 import UIKit
-//import RxSwift
-//import RxDataSources
 
 final class DutchPayViewController: UIViewController {
     
@@ -68,8 +66,8 @@ final class DutchPayViewController: UIViewController {
     private func bindViewModel() {
         self.viewModel.dutchPayData.bind { [weak self] data in
             guard let `self` = self else { return }
-            self.hideErrorView()
             self.collectionView.reloadData()
+            self.hideErrorView()
             self.refreshController.endRefreshing()
         }
     }
@@ -90,7 +88,7 @@ final class DutchPayViewController: UIViewController {
         self.viewModel.fetchErrorHandler = { [weak self] error in
             guard let `self` = self else { return }
             let errorCode = error.asAFError?.responseCode
-            self.showErrorView(errorCode: errorCode)
+            self.showApiFetchErrorView(errorCode: errorCode)
         }
     }
     
@@ -105,7 +103,7 @@ final class DutchPayViewController: UIViewController {
         self.viewModel.refreshDutchPayData()
     }
     
-    private func showErrorView(errorCode: Int?) {
+    private func showApiFetchErrorView(errorCode: Int?) {
         if self.errorView == nil {
             self.errorView = DutchPayFetErrorView()
             self.errorView?.reloadHandler = { [weak self] in
@@ -139,6 +137,8 @@ final class DutchPayViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
         self.present(alert, animated: true)
     }
+    
+    var isAnimating = false
 }
 
 extension DutchPayViewController: UICollectionViewDataSource {
@@ -154,7 +154,7 @@ extension DutchPayViewController: UICollectionViewDataSource {
                     self.alertRequestPaymentUnable()
                     return
                 }
-                self.viewModel.updatePaymentStatus(index: indexPath.item)
+                self.viewModel.updatePaymentStatusToNextCase(index: indexPath.item)
             }
             
             cell.requestCancelHandler = { [weak self] in
@@ -162,10 +162,7 @@ extension DutchPayViewController: UICollectionViewDataSource {
                 self.viewModel.requestCanceled(index: indexPath.item)
             }
             
-            cell.isAnimatingHandlier = { [weak self] bool in
-                guard let `self` = self else { return }
-                self.viewModel.updateIsAnimatingNow(isAnimating: bool, index: indexPath.item)
-            }
+            cell.delegate = self
             
             return cell
         } else {
@@ -210,6 +207,29 @@ extension DutchPayViewController: UICollectionViewDelegateFlowLayout {
 
         } else {
             return CGSize(width: 0, height: 0)
+        }
+    }
+}
+
+extension DutchPayViewController: DutchPayCollectionViewCellDelegate {
+    func dutchPayCollectionViewCellAnimateProgress(collectionView: DutchPayCollectionViewCell) {
+        guard let dutchId = collectionView.dataSet?.dutchId else {
+            return
+        }
+        
+        let currentTime = Date()
+        let animationDuration = 10
+        if let previousRequestedTime = self.viewModel.getRequestedTime(id: dutchId) {
+            let differenceInSecondsToNow = DateTimeCalendarUtil.differenceInSeconds(from: previousRequestedTime, to: currentTime)
+            if differenceInSecondsToNow < animationDuration {
+                let startingPoint = CGFloat(Double(differenceInSecondsToNow) / Double(10))
+                collectionView.progressAnimationButton.animate(from: startingPoint)
+            } else {
+                self.viewModel.updatePaymentStatusToNextCase(dutchId: dutchId)
+            }
+        } else {
+            collectionView.progressAnimationButton.animate(from: 0)
+            self.viewModel.paymentRequestedIdList[dutchId] = currentTime
         }
     }
 }
