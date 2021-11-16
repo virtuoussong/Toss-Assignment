@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 final class DutchPayViewModel {
     // MARK: Property
@@ -33,6 +34,9 @@ final class DutchPayViewModel {
     
     private func fetchDutchPayDataFromCache() {
         print("cache data")
+        if let cachedData = self.importJsonFile() {
+            self.dutchPayData.value = cachedData
+        }
     }
     
     private func fetchDutchPayData() {
@@ -55,5 +59,22 @@ final class DutchPayViewModel {
     
     func updatePaymentStatus(index: Int) {
         self.dutchPayData.value?.dutchDetailList?[index].updatePaymentStatus()
+    }
+    
+    private func importJsonFile() -> DutchPayData? {
+        if let path = Bundle.main.path(forResource: "cached_data", ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                let jsonResult = try JSON(data)
+                let parsedData: DutchPayData = DutchPayData(jsonResult)
+                return parsedData
+            } catch {
+                print("error", error)
+                return nil
+            }
+        } else {
+            print("invalid address")
+            return nil
+        }
     }
 }

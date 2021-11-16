@@ -66,7 +66,7 @@ final class DutchPayCollectionViewHeaderCell: UICollectionViewCell {
         
         let completedAmount = abs(data.completedAmount ?? 0)
         let totalAmount = abs(data.totalAmount ?? 0)
-        self.amountLabel.text = "\(completedAmount.formatToCurrencyWon) 원완료 / 총 \(totalAmount.formatToCurrencyWon) 원"
+        self.amountLabel.text = "\(completedAmount.formatToCurrencyWon) 원 완료 / 총 \(totalAmount.formatToCurrencyWon) 원"
         self.messageLabel.text = "\(data.ownerName ?? ""): \(data.message ?? "")"
     }
     

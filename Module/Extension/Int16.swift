@@ -9,7 +9,7 @@
 import Foundation
 
 
-extension Int16 {
+extension Int {
     var formatToCurrencyWon: String {
         let formattedNumber = NumberFormatter()
         formattedNumber.numberStyle = .decimal
