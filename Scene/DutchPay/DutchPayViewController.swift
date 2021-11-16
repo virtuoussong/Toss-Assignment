@@ -39,20 +39,25 @@ final class DutchPayViewController: UIViewController {
         return collectionView
     }()
     
+    let refreshController = UIRefreshControl()
+    
+    var errorView: DutchPayFetErrorView?
+    
     //MARK: Property
     private let viewModel: DutchPayViewModel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
         self.addSubviews()
         self.layoutComponents()
         self.bindViewModel()
+        self.configureRefreshController()
     }
     
     init(viewModel: DutchPayViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        self.configureViewModel()
     }
     
     required init?(coder: NSCoder) {
@@ -62,7 +67,9 @@ final class DutchPayViewController: UIViewController {
     private func bindViewModel() {
         self.viewModel.dutchPayData.bind { [weak self] data in
             guard let `self` = self else { return }
+            self.hideErrorView()
             self.collectionView.reloadData()
+            self.refreshController.endRefreshing()
         }
     }
     
@@ -85,6 +92,54 @@ final class DutchPayViewController: UIViewController {
                 cell.progressAnimationButton.animate(from: 0)
             }
         }
+    }
+    
+    private func configureViewModel() {
+        self.viewModel.fetchErrorHandler = { [weak self] error in
+            guard let `self` = self else { return }
+            let errorCode = error.asAFError?.responseCode
+            self.showErrorView(errorCode: errorCode)
+        }
+    }
+    
+    private func configureRefreshController() {
+        self.refreshController.tintColor = .lightGray
+        self.refreshController.addTarget(self, action: #selector(self.refreshData), for: .valueChanged)
+        self.collectionView.addSubview(self.refreshController)
+    }
+    
+    @objc private func refreshData() {
+        self.refreshController.beginRefreshing()
+        self.viewModel.refreshDutchPayData()
+    }
+    
+    private func showErrorView(errorCode: Int?) {
+        if self.errorView == nil {
+            self.errorView = DutchPayFetErrorView()
+            self.errorView?.reloadHandler = { [weak self] in
+                guard let `self` = self else { return }
+                self.viewModel.refreshDutchPayData()
+            }
+        }
+        
+        self.errorView?.frame = self.view.frame
+        
+        if let code = errorCode {
+            self.errorView?.configureErrorCode(errorCode: code)
+        }
+        
+        if let errorView = self.errorView {
+            self.view.addSubview(errorView)
+        }
+        
+        self.collectionView.isHidden = true
+    }
+        
+    private func hideErrorView() {
+        self.errorView?.isHidden = true
+        self.errorView?.removeFromSuperview()
+        self.errorView = nil
+        self.collectionView.isHidden = false
     }
 }
 

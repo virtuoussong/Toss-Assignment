@@ -11,7 +11,11 @@ import Foundation
 final class DutchPayViewModel {
     // MARK: Property
     private let requestService: DutchPayService
+    
     var dutchPayData: Observable<DutchPayData?> = Observable(nil)
+    
+    var fetchErrorHandler: ((Error) -> Void)?
+    
     
     // MARK: Initialization
     init(requestService: DutchPayService) {
@@ -42,6 +46,7 @@ final class DutchPayViewModel {
             case .success(let data):
                 self.dutchPayData.value = data
             case .failure(let error):
+                self.fetchErrorHandler?(error)
                 print(error)
             }
         }
