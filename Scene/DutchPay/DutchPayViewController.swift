@@ -48,6 +48,7 @@ final class DutchPayViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "더치페이"
         self.addSubviews()
         self.layoutComponents()
         self.bindViewModel()

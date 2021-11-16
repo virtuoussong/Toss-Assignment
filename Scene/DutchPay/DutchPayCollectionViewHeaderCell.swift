@@ -61,7 +61,6 @@ final class DutchPayCollectionViewHeaderCell: UICollectionViewCell {
         guard let data = data else { return }
         
         let date = data.date ?? ""
-        print("header Date", date)
         self.dateLabel.text = date.dateFormatter
         
         let completedAmount = abs(data.completedAmount ?? 0)

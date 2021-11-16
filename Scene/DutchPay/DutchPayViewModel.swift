@@ -33,7 +33,6 @@ final class DutchPayViewModel {
     }
     
     private func fetchDutchPayDataFromCache() {
-        print("cache data")
         if let cachedData = self.importJsonFile() {
             self.dutchPayData.value = cachedData
         }
@@ -44,12 +43,30 @@ final class DutchPayViewModel {
             guard let `self` = self else { return }
             switch result {
             case .success(let data):
-                self.dutchPayData.value = data
+                let mutatedData = self.addAdItem(data: data)
+                self.dutchPayData.value = mutatedData
+                
                 UserDefaultUtil.setIsDataFetchedFromApi()
             case .failure(let error):
                 self.fetchErrorHandler?(error)
                 print(error)
             }
+        }
+    }
+    
+    private func addAdItem(data: DutchPayData) -> DutchPayData? {
+        if let array = data.dutchDetailList {
+            var copiedArray = array
+            let insertingIndex = array.count / 2
+            var adItem = DutchPayData.DutchDetail()
+            adItem.isAd = true
+            copiedArray.insert(adItem, at: insertingIndex)
+            
+            var copiedData = data
+            copiedData.dutchDetailList = copiedArray
+            return copiedData
+        } else {
+            return nil
         }
     }
     

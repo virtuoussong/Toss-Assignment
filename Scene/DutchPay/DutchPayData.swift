@@ -35,6 +35,7 @@ struct DutchPayData {
         var transferMessage: String?
         var isDone: Bool = false
         var paymentStatus: DutchPaymentStatus = .notReceivedMoney
+        var isAd: Bool = false
         
         init(_ json: JSON) {
             self.dutchId = json["dutchId"].intValue
@@ -47,6 +48,10 @@ struct DutchPayData {
             } else {
                 self.paymentStatus = .notReceivedMoney
             }
+        }
+        
+        init() {
+            
         }
         
         mutating func updatePaymentStatus() {

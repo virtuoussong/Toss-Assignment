@@ -59,6 +59,19 @@ final class DutchPayCollectionViewCell: UICollectionViewCell {
         return r
     }()
     
+    let adLabel: UILabel = {
+        let a = UILabel()
+        a.text = "토스 공동계좌흘 개설 해 보세요."
+        a.font = .boldSystemFont(ofSize: 16)
+        a.textColor = .black
+        a.textAlignment = .center
+        a.layer.cornerRadius = 8
+        a.layer.borderWidth = 2
+        a.layer.borderColor = UIColor.black.cgColor
+        a.backgroundColor = .white
+        return a
+    }()
+    
     // MARK: Stored Property
     var dataSet: DutchPayData.DutchDetail?
     
@@ -107,6 +120,12 @@ final class DutchPayCollectionViewCell: UICollectionViewCell {
         self.requestButton.configureRequestState(paymentStatus: data.paymentStatus)
         self.configureRequestAndProgressbutton()
         self.addComponentToContentStackView()
+        
+        if data.isAd {
+            self.adLabel.isHidden = false
+        } else {
+            self.adLabel.isHidden = true
+        }
     }
     
     private func configureRequestAndProgressbutton() {
@@ -124,7 +143,7 @@ final class DutchPayCollectionViewCell: UICollectionViewCell {
     
     // MAKR: Layout
     private func addSubviews() {
-        [self.firstNameView, self.contentStackView].forEach {
+        [self.firstNameView, self.contentStackView, self.adLabel].forEach {
             self.contentView.addSubview($0)
         }
     }
@@ -139,6 +158,10 @@ final class DutchPayCollectionViewCell: UICollectionViewCell {
             $0.leading.equalTo(self.firstNameView.snp.trailing).offset(16)
             $0.trailing.equalTo(self.contentView).offset(-32)
             $0.centerY.equalToSuperview()
+        }
+        
+        self.adLabel.snp.makeConstraints {
+            $0.edges.equalToSuperview().inset(16)
         }
     }
     
