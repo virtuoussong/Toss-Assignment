@@ -36,7 +36,6 @@ struct DutchPayData {
         var isDone: Bool = false
         var paymentStatus: DutchPaymentStatus = .notReceivedMoney
         var isAd: Bool = false
-        var isAnimationNow = false
         
         init(_ json: JSON) {
             self.dutchId = json["dutchId"].intValue
@@ -55,7 +54,7 @@ struct DutchPayData {
             
         }
         
-        mutating func updatePaymentStatus() {
+        mutating func updatePaymentStatusToNextCase() {
             self.paymentStatus = self.paymentStatus.next()
         }
         
