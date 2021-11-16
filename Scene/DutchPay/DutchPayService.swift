@@ -8,7 +8,7 @@
 
 import Foundation
 
-class DutchPayService {
+final class DutchPayService {
     
     let requestManager: ApiRequestManager
     
