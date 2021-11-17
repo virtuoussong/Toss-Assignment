@@ -65,7 +65,7 @@ final class DutchPayCollectionViewCell: UICollectionViewCell {
     
     private let adLabel: UILabel = {
         let a = UILabel()
-        a.text = "토스 공동계좌흘 개설 해 보세요."
+        a.text = "토스 공동계좌를 개설 해 보세요."
         a.font = .boldSystemFont(ofSize: 16)
         a.textColor = .black
         a.textAlignment = .center
