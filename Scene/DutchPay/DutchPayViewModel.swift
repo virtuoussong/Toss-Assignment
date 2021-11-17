@@ -112,6 +112,9 @@ final class DutchPayViewModel {
     
     func requestCanceled(index: Int) {
         self.dutchPayData.value?.dutchDetailList?[index].requestCanceled()
+        if let dutchId = self.dutchPayData.value?.dutchDetailList?[index].dutchId {
+            DutchPayRequestSentList.shared.paymentRequestedIdList.removeValue(forKey: dutchId)
+        }
     }
     
     private func importJsonFile() -> DutchPayData? {

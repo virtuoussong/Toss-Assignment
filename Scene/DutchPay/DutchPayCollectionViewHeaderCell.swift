@@ -30,6 +30,7 @@ final class DutchPayCollectionViewHeaderCell: UICollectionViewCell {
         let r = UIView()
         r.layer.cornerRadius = 16
         r.backgroundColor = .lightGray
+        r.isHidden = true
         return r
     }()
     
@@ -44,6 +45,7 @@ final class DutchPayCollectionViewHeaderCell: UICollectionViewCell {
     private let bottomLineView: UIView = {
         let b = UIView()
         b.backgroundColor = .gray
+        b.isHidden = true
         return b
     }()
     
@@ -67,6 +69,9 @@ final class DutchPayCollectionViewHeaderCell: UICollectionViewCell {
         let totalAmount = abs(data.totalAmount ?? 0)
         self.amountLabel.text = "\(completedAmount.formatToCurrencyWon) 원 완료 / 총 \(totalAmount.formatToCurrencyWon) 원"
         self.messageLabel.text = "\(data.ownerName ?? ""): \(data.message ?? "")"
+        
+        self.textBubbleView.isHidden = false
+        self.bottomLineView.isHidden = false
     }
     
     private func addSubviews() {

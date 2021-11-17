@@ -34,6 +34,7 @@ final class DutchPayViewController: UIViewController {
         collectionView.backgroundColor = .white
         collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.isHidden = true
         return collectionView
     }()
     
