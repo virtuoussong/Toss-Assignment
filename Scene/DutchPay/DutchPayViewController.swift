@@ -53,6 +53,7 @@ final class DutchPayViewController: UIViewController {
         self.configureRefreshController()
     }
     
+    // MARK: Initialization
     init(viewModel: DutchPayViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -63,6 +64,7 @@ final class DutchPayViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: View Model Bind
     private func bindViewModel() {
         self.viewModel.dutchPayData.bind { [weak self] data in
             guard let `self` = self else { return }
@@ -72,6 +74,7 @@ final class DutchPayViewController: UIViewController {
         }
     }
     
+    // MARK: Layout
     private func addSubviews() {
         [self.collectionView].forEach {
             self.view.addSubview($0)
@@ -84,6 +87,7 @@ final class DutchPayViewController: UIViewController {
         }
     }
     
+    // MARK: Configuration
     private func configureViewModel() {
         self.viewModel.fetchErrorHandler = { [weak self] error in
             guard let `self` = self else { return }
@@ -98,6 +102,7 @@ final class DutchPayViewController: UIViewController {
         self.collectionView.addSubview(self.refreshController)
     }
     
+    // MARK: Method
     @objc private func refreshData() {
         self.refreshController.beginRefreshing()
         self.viewModel.refreshDutchPayData()
@@ -137,30 +142,9 @@ final class DutchPayViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
         self.present(alert, animated: true)
     }
-    
-//    private func animateProgressButton(dutchId: Int, indexPath: IndexPath) {
-//        guard let cell = self.collectionView.cellForItem(at: indexPath) as?  DutchPayCollectionViewCell else { return }
-//        let currentTime = Date()
-//        let animationDuration = 10
-//
-//        if let previousRequestedTime = self.viewModel.getRequestedTime(id: dutchId) {
-//            let differenceInSecondsToNow = DateTimeCalendarUtil.differenceInSeconds(from: previousRequestedTime, to: currentTime)
-//            if differenceInSecondsToNow < animationDuration {
-//                let startingPoint = CGFloat(Double(differenceInSecondsToNow) / Double(10))
-//                cell.progressAnimationButton.animate(from: startingPoint)
-//            } else {
-//                self.viewModel.updatePaymentStatusToNextCase(dutchId: dutchId)
-//                self.collectionView.performBatchUpdates {
-//                    self.collectionView.reloadItems(at: [indexPath])
-//                } completion: { _ in }
-//            }
-//        } else {
-//            cell.progressAnimationButton.animate(from: 0)
-//            self.viewModel.paymentRequestedIdList[dutchId] = currentTime
-//        }
-//    }
 }
 
+// MARK: Collectionview Delegate
 extension DutchPayViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellId.cell, for: indexPath) as? DutchPayCollectionViewCell {
@@ -176,12 +160,6 @@ extension DutchPayViewController: UICollectionViewDataSource {
                 }
                 self.viewModel.updatePaymentStatusToNextCase(index: indexPath.item)
             }
-            
-//            cell.progressButtonAnimationHandler = { [weak self] in
-//                guard let `self` = self else { return }
-//                guard let dutchId = data?.dutchId else { return }
-//                self.animateProgressButton(dutchId: dutchId, indexPath: indexPath)
-//            }
             
             cell.requestCancelHandler = { [weak self] in
                 guard let `self` = self else { return }
@@ -237,6 +215,7 @@ extension DutchPayViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+// MARK: DutchCell Delegate
 extension DutchPayViewController: DutchPayCollectionViewCellDelegate {
     func dutchPayCollectionViewCellAnimateProgress(collectionViewCell: DutchPayCollectionViewCell) {
         guard let dutchId = collectionViewCell.dataSet?.dutchId else {
