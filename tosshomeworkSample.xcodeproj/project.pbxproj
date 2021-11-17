@@ -17,6 +17,7 @@
 		3A44E8620FB813185A040904 /* Pods_tosshomeworkSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2F4FEF605CF6D879E139373 /* Pods_tosshomeworkSample.framework */; };
 		CBB500E5BB4618FD1B16EB4B /* Pods_tosshomeworkSample_tosshomeworkSampleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E16BF55ED23CD4C34940D6B1 /* Pods_tosshomeworkSample_tosshomeworkSampleUITests.framework */; };
 		DEC2F7222743F383005AF3C9 /* DateTimeCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC2F7212743F383005AF3C9 /* DateTimeCalendar.swift */; };
+		DEC2F7272744D631005AF3C9 /* DutchPayRequestSentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC2F7262744D631005AF3C9 /* DutchPayRequestSentList.swift */; };
 		DEDB62E52742253900833F16 /* DutchPayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDB62E42742253900833F16 /* DutchPayViewController.swift */; };
 		DEDB62EA2742258700833F16 /* DutchPayCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDB62E92742258700833F16 /* DutchPayCollectionViewCell.swift */; };
 		DEDB62EF274225DC00833F16 /* DutchPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDB62EE274225DC00833F16 /* DutchPayViewModel.swift */; };
@@ -76,6 +77,7 @@
 		B3F9A692DE0038BDF3AB39EF /* Pods_tosshomeworkSampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tosshomeworkSampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2F4FEF605CF6D879E139373 /* Pods_tosshomeworkSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tosshomeworkSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEC2F7212743F383005AF3C9 /* DateTimeCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeCalendar.swift; sourceTree = "<group>"; };
+		DEC2F7262744D631005AF3C9 /* DutchPayRequestSentList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DutchPayRequestSentList.swift; sourceTree = "<group>"; };
 		DEDB62E42742253900833F16 /* DutchPayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DutchPayViewController.swift; sourceTree = "<group>"; };
 		DEDB62E92742258700833F16 /* DutchPayCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DutchPayCollectionViewCell.swift; sourceTree = "<group>"; };
 		DEDB62EE274225DC00833F16 /* DutchPayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DutchPayViewModel.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				DEDB62F32742260200833F16 /* DutchPayData.swift */,
 				DEDB62FB2742265600833F16 /* DutchPayService.swift */,
 				DEE4F093274332A10060025D /* DutchPayFetErrorView.swift */,
+				DEC2F7262744D631005AF3C9 /* DutchPayRequestSentList.swift */,
 			);
 			path = DutchPay;
 			sourceTree = "<group>";
@@ -558,6 +561,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEDB62E52742253900833F16 /* DutchPayViewController.swift in Sources */,
+				DEC2F7272744D631005AF3C9 /* DutchPayRequestSentList.swift in Sources */,
 				DEE4F0842742DB6B0060025D /* CaseIterable.swift in Sources */,
 				DEDB6319274233D600833F16 /* ApiManager.swift in Sources */,
 				DEE4F07F2742D2110060025D /* DutchPayRequestButton.swift in Sources */,

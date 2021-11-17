@@ -256,7 +256,7 @@ extension DutchPayViewController: DutchPayCollectionViewCellDelegate {
             }
         } else {
             collectionViewCell.progressAnimationButton.animate(from: 0)
-            self.viewModel.paymentRequestedIdList[dutchId] = currentTime
+            DutchPayRequestSentList.shared.paymentRequestedIdList[dutchId] = currentTime
         }
     }
 }

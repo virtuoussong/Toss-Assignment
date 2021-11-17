@@ -26,26 +26,19 @@ class UserDefaultUtil {
     }
     
     static func getPaymentRequestedUser() -> PaymentRequestedUserAndTime {
-        if let data = UserDefaults.standard.value(forKey: self.paymentRequestedUserAndTime) as?  PaymentRequestedUserAndTime {
-            return data
+        if let data = UserDefaults.standard.value(forKey: self.paymentRequestedUserAndTime) as? Data {
+            if let decoded = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? PaymentRequestedUserAndTime {
+                return decoded
+            }
         }
+        
         let emtyList: PaymentRequestedUserAndTime = [:]
         return emtyList
     }
     
-    static func setPaymentRequestedUser(id: Int, time: Date) {
-        var list = getPaymentRequestedUser()
-        list[id] = time
-        print("saving List", list)
-        UserDefaults.standard.setValue(list, forKey: self.paymentRequestedUserAndTime)
-    }
-    
-    static func getPaymentRequestedTime(id: Int) -> Date? {
-        let userData = getPaymentRequestedUser()
-        if let date = userData[id] {
-            return date
-        }
-        
-        return nil
+    static func savePaymentRequestedUser() {
+        let list = DutchPayRequestSentList.shared.paymentRequestedIdList
+        let encodedData = NSKeyedArchiver.archivedData(withRootObject: list)
+        UserDefaults.standard.setValue(encodedData, forKey: self.paymentRequestedUserAndTime)
     }
 }
