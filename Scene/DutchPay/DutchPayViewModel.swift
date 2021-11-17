@@ -9,22 +9,20 @@
 import Foundation
 import SwiftyJSON
 
-typealias PaymentRequestedUserAndTime = [Int: Date]
 
 final class DutchPayViewModel {
     // MARK: Property
     private let requestService: DutchPayService
     
     var dutchPayData: Observable<DutchPayData?> = Observable(nil)
-    
-    var paymentRequestedIdList: PaymentRequestedUserAndTime = [:]
-    
+        
     var fetchErrorHandler: ((Error) -> Void)?
         
     // MARK: Initialization
     init(requestService: DutchPayService) {
         self.requestService = requestService
         self.loadInitialDutchPayData()
+        self.loadSavedDutchPayRequestListFromUserDefault()
     }
     
     private func loadInitialDutchPayData() {
@@ -65,12 +63,37 @@ final class DutchPayViewModel {
             adItem.isAd = true
             copiedArray.insert(adItem, at: insertingIndex)
             
+            let sendRequestUpdatedArray = self.sentRequestListUpate(array: copiedArray)
+            
             var copiedData = data
-            copiedData.dutchDetailList = copiedArray
+            copiedData.dutchDetailList = sendRequestUpdatedArray
             return copiedData
+            
         } else {
             return nil
         }
+    }
+    
+    private func sentRequestListUpate(array: [DutchPayData.DutchDetail]) -> [DutchPayData.DutchDetail] {
+        var updatedArray = array
+        updatedArray.enumerated().forEach { index, item in
+            guard let dutchId = item.dutchId else { return }
+            var isSent: Bool {
+                get {
+                    if DutchPayRequestSentList.shared.paymentRequestedIdList[dutchId] != nil {
+                        return true
+                    } else {
+                        return false
+                    }
+                }
+            }
+            
+            if isSent {
+                updatedArray[index].paymentStatus = .sentRequestAgain
+            }
+        }
+        
+        return updatedArray
     }
     
     func refreshDutchPayData() {
@@ -108,12 +131,17 @@ final class DutchPayViewModel {
         }
     }
     
+    private func loadSavedDutchPayRequestListFromUserDefault() {
+        let list = UserDefaultUtil.getPaymentRequestedUser()
+        DutchPayRequestSentList.shared.paymentRequestedIdList = list
+    }
+    
     func inserRequestedDutchId(id: Int, date: Date) {
-        self.paymentRequestedIdList[id] = date
+        DutchPayRequestSentList.shared.paymentRequestedIdList[id] = date
     }
     
     func getRequestedTime(id: Int) -> Date? {
-        if let time = self.paymentRequestedIdList[id] {
+        if let time = DutchPayRequestSentList.shared.paymentRequestedIdList[id] {
             return time
         }
         return nil
