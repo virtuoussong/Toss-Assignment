@@ -138,7 +138,27 @@ final class DutchPayViewController: UIViewController {
         self.present(alert, animated: true)
     }
     
-    var isAnimating = false
+//    private func animateProgressButton(dutchId: Int, indexPath: IndexPath) {
+//        guard let cell = self.collectionView.cellForItem(at: indexPath) as?  DutchPayCollectionViewCell else { return }
+//        let currentTime = Date()
+//        let animationDuration = 10
+//
+//        if let previousRequestedTime = self.viewModel.getRequestedTime(id: dutchId) {
+//            let differenceInSecondsToNow = DateTimeCalendarUtil.differenceInSeconds(from: previousRequestedTime, to: currentTime)
+//            if differenceInSecondsToNow < animationDuration {
+//                let startingPoint = CGFloat(Double(differenceInSecondsToNow) / Double(10))
+//                cell.progressAnimationButton.animate(from: startingPoint)
+//            } else {
+//                self.viewModel.updatePaymentStatusToNextCase(dutchId: dutchId)
+//                self.collectionView.performBatchUpdates {
+//                    self.collectionView.reloadItems(at: [indexPath])
+//                } completion: { _ in }
+//            }
+//        } else {
+//            cell.progressAnimationButton.animate(from: 0)
+//            self.viewModel.paymentRequestedIdList[dutchId] = currentTime
+//        }
+//    }
 }
 
 extension DutchPayViewController: UICollectionViewDataSource {
@@ -148,7 +168,7 @@ extension DutchPayViewController: UICollectionViewDataSource {
             
             cell.configure(data: data)
             
-            cell.requestPaymentButtonTapHandler = { [weak self] status in
+            cell.requestPaymentButtonUpdateHandler = { [weak self] status in
                 guard let `self` = self else { return }
                 guard status != .sentRequestAgain else {
                     self.alertRequestPaymentUnable()
@@ -156,6 +176,12 @@ extension DutchPayViewController: UICollectionViewDataSource {
                 }
                 self.viewModel.updatePaymentStatusToNextCase(index: indexPath.item)
             }
+            
+//            cell.progressButtonAnimationHandler = { [weak self] in
+//                guard let `self` = self else { return }
+//                guard let dutchId = data?.dutchId else { return }
+//                self.animateProgressButton(dutchId: dutchId, indexPath: indexPath)
+//            }
             
             cell.requestCancelHandler = { [weak self] in
                 guard let `self` = self else { return }
@@ -212,23 +238,24 @@ extension DutchPayViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension DutchPayViewController: DutchPayCollectionViewCellDelegate {
-    func dutchPayCollectionViewCellAnimateProgress(collectionView: DutchPayCollectionViewCell) {
-        guard let dutchId = collectionView.dataSet?.dutchId else {
+    func dutchPayCollectionViewCellAnimateProgress(collectionViewCell: DutchPayCollectionViewCell) {
+        guard let dutchId = collectionViewCell.dataSet?.dutchId else {
             return
         }
-        
+
         let currentTime = Date()
         let animationDuration = 10
         if let previousRequestedTime = self.viewModel.getRequestedTime(id: dutchId) {
             let differenceInSecondsToNow = DateTimeCalendarUtil.differenceInSeconds(from: previousRequestedTime, to: currentTime)
             if differenceInSecondsToNow < animationDuration {
                 let startingPoint = CGFloat(Double(differenceInSecondsToNow) / Double(10))
-                collectionView.progressAnimationButton.animate(from: startingPoint)
+                collectionViewCell.progressAnimationButton.animate(from: startingPoint)
             } else {
+                collectionViewCell.updateRequestButtonToSent()
                 self.viewModel.updatePaymentStatusToNextCase(dutchId: dutchId)
             }
         } else {
-            collectionView.progressAnimationButton.animate(from: 0)
+            collectionViewCell.progressAnimationButton.animate(from: 0)
             self.viewModel.paymentRequestedIdList[dutchId] = currentTime
         }
     }

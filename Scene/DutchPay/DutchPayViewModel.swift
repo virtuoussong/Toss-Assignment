@@ -83,7 +83,7 @@ final class DutchPayViewModel {
     
     func updatePaymentStatusToNextCase(dutchId: Int) {
         if let index = self.dutchPayData.value?.dutchDetailList?.firstIndex(where: { $0.dutchId == dutchId }) {
-            self.dutchPayData.value?.dutchDetailList?[index].updatePaymentStatusToNextCase()
+            self.updatePaymentStatusToNextCase(index: index)
         }
     }
     
