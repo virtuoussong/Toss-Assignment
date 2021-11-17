@@ -10,7 +10,7 @@ import Foundation
 
 typealias PaymentRequestedUserAndTime = [Int: Date]
 
-class DutchPayRequestSentList {
+final class DutchPayRequestSentList {
     static let shared = DutchPayRequestSentList()
     var paymentRequestedIdList: PaymentRequestedUserAndTime = [:]
 }

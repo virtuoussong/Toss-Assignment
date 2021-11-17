@@ -10,7 +10,7 @@ import Foundation
 
 final class DutchPayService {
     
-    let requestManager: ApiRequestManager
+    private let requestManager: ApiRequestManager
     
     init(requestManager: ApiRequestManager) {
         self.requestManager = requestManager

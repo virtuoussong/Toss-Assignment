@@ -11,7 +11,7 @@ import UIKit
 
 final class DutchPayFetErrorView: UIView {
     
-    let errorMessageLabel: UILabel = {
+    private let errorMessageLabel: UILabel = {
         let r = UILabel()
         r.font = .systemFont(ofSize: 24)
         r.numberOfLines = 0
@@ -19,7 +19,7 @@ final class DutchPayFetErrorView: UIView {
         return r
     }()
     
-    let reloadButton: UIButton = {
+    private let reloadButton: UIButton = {
         let r = UIButton()
         r.setTitle("다시 시도", for: .normal)
         r.setTitleColor(.blue, for: .normal)

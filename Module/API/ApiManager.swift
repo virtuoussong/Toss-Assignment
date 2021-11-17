@@ -9,9 +9,8 @@
 import Foundation
 import Alamofire
 
-class ApiRequestManager {
+final class ApiRequestManager {
     static let shared = ApiRequestManager()
-    let host: URL = URL(string: "https://ek7b8b8yq2.execute-api.us-east-2.amazonaws.com")!
     
     var manager: Session = {
         let configuration = URLSessionConfiguration.default
