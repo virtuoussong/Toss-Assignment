@@ -11,7 +11,7 @@ import UIKit
 import SnapKit
 
 protocol DutchPayCollectionViewCellDelegate: AnyObject {
-    func dutchPayCollectionViewCellAnimateProgress(collectionView: DutchPayCollectionViewCell)
+    func dutchPayCollectionViewCellAnimateProgress(collectionViewCell: DutchPayCollectionViewCell)
 }
 
 final class DutchPayCollectionViewCell: UICollectionViewCell {
@@ -57,13 +57,13 @@ final class DutchPayCollectionViewCell: UICollectionViewCell {
     lazy var progressAnimationButton: ProgressButton = {
         let r = ProgressButton(color: .blue, radius: 16, duration: 10) { [weak self] in
             guard let `self` = self else { return}
-            self.requestPaymentButtonTapHandler?(self.paymentStatus)
+            self.requestPaymentButtonUpdateHandler?(self.paymentStatus)
         }
         r.addTarget(self, action: #selector(self.progressButtonDidTap), for: .touchUpInside)
         return r
     }()
     
-    let adLabel: UILabel = {
+    private let adLabel: UILabel = {
         let a = UILabel()
         a.text = "토스 공동계좌흘 개설 해 보세요."
         a.font = .boldSystemFont(ofSize: 16)
@@ -81,14 +81,17 @@ final class DutchPayCollectionViewCell: UICollectionViewCell {
     
     var paymentStatus: DutchPaymentStatus = .notReceivedMoney
         
-    var requestPaymentButtonTapHandler: ((DutchPaymentStatus) -> Void)?
+    var requestPaymentButtonUpdateHandler: ((DutchPaymentStatus) -> Void)?
+    
+    var requestProgressAnimationHandler: (() -> Void)?
     
     var requestCancelHandler: (() -> Void)?
     
     var progressButtonAnimationHandler: (() -> Void)?
     
     weak var delegate: DutchPayCollectionViewCellDelegate?
-            
+    
+    // MARK: Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubviews()
@@ -125,7 +128,7 @@ final class DutchPayCollectionViewCell: UICollectionViewCell {
             self.amountLabel.textColor = .black
         }
         
-        self.configureRequestAndProgressbutton()
+        self.configureRequestAndProgressbutton(status: data.paymentStatus)
         
         self.addComponentToContentStackView()
         
@@ -136,20 +139,27 @@ final class DutchPayCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func configureRequestAndProgressbutton() {
+    private func configureRequestAndProgressbutton(status: DutchPaymentStatus) {
         self.requestButton.paymentStatus = self.paymentStatus
-        
-        switch self.paymentStatus {
+
+        switch status {
         case .sendingRequest:
             self.progressAnimationButton.isHidden = false
             self.requestButton.isHidden = true
-            self.delegate?.dutchPayCollectionViewCellAnimateProgress(collectionView: self)
+            self.delegate?.dutchPayCollectionViewCellAnimateProgress(collectionViewCell: self)
+            self.progressButtonAnimationHandler?()
             
         case .notReceivedMoney, .sentRequestAgain, .receivedMoney:
-            self.progressAnimationButton.isHidden = true
             self.progressAnimationButton.cancel()
+            self.progressAnimationButton.isHidden = true
             self.requestButton.isHidden = false
         }
+    }
+    
+    func updateRequestButtonToSent() {
+        self.paymentStatus = .sentRequestAgain
+        self.progressAnimationButton.isHidden = true
+        self.requestButton.paymentStatus = .sentRequestAgain
     }
     
     // MAKR: Layout
@@ -226,7 +236,7 @@ final class DutchPayCollectionViewCell: UICollectionViewCell {
         guard self.paymentStatus != .receivedMoney else {
             return
         }
-        self.requestPaymentButtonTapHandler?(self.paymentStatus)
+        self.requestPaymentButtonUpdateHandler?(self.paymentStatus)
     }
     
     @objc private func progressButtonDidTap() {
