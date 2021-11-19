@@ -156,7 +156,7 @@ final class DutchPayCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func updateRequestButtonToSent() {
+    func updateRequestButtonToRequestSent() {
         self.paymentStatus = .sentRequestAgain
         self.progressAnimationButton.isHidden = true
         self.requestButton.paymentStatus = .sentRequestAgain

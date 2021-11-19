@@ -34,7 +34,7 @@ final class DutchPayViewModel {
     }
     
     private func fetchDutchPayDataFromCache() {
-        if let cachedData = self.importJsonFile() {
+        if let cachedData = self.importDutchPayListJsonFile() {
             self.dutchPayData.value = cachedData
         }
     }
@@ -110,14 +110,14 @@ final class DutchPayViewModel {
         }
     }
     
-    func requestCanceled(index: Int) {
+    func cancelRequestPayment(index: Int) {
         self.dutchPayData.value?.dutchDetailList?[index].requestCanceled()
         if let dutchId = self.dutchPayData.value?.dutchDetailList?[index].dutchId {
             DutchPayRequestSentList.shared.paymentRequestedIdList.removeValue(forKey: dutchId)
         }
     }
     
-    private func importJsonFile() -> DutchPayData? {
+    private func importDutchPayListJsonFile() -> DutchPayData? {
         if let path = Bundle.main.path(forResource: "cached_data", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
@@ -139,11 +139,11 @@ final class DutchPayViewModel {
         DutchPayRequestSentList.shared.paymentRequestedIdList = list
     }
     
-    func inserRequestedDutchId(id: Int, date: Date) {
+    func insertRequestedDutchId(id: Int, date: Date) {
         DutchPayRequestSentList.shared.paymentRequestedIdList[id] = date
     }
     
-    func getRequestedTime(id: Int) -> Date? {
+    func getPaymentRequestedTime(id: Int) -> Date? {
         if let time = DutchPayRequestSentList.shared.paymentRequestedIdList[id] {
             return time
         }
