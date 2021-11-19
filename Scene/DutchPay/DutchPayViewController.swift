@@ -164,7 +164,7 @@ extension DutchPayViewController: UICollectionViewDataSource {
             
             cell.requestCancelHandler = { [weak self] in
                 guard let `self` = self else { return }
-                self.viewModel.requestCanceled(index: indexPath.item)
+                self.viewModel.cancelRequestPayment(index: indexPath.item)
             }
             
             cell.delegate = self
@@ -225,13 +225,13 @@ extension DutchPayViewController: DutchPayCollectionViewCellDelegate {
 
         let currentTime = Date()
         let animationDuration = 10
-        if let previousRequestedTime = self.viewModel.getRequestedTime(id: dutchId) {
-            let differenceInSecondsToNow = DateTimeCalendarUtil.differenceInSeconds(from: previousRequestedTime, to: currentTime)
-            if differenceInSecondsToNow < animationDuration {
-                let startingPoint = CGFloat(Double(differenceInSecondsToNow) / Double(10))
-                collectionViewCell.progressAnimationButton.animate(from: startingPoint)
+        if let previousRequestedTime = self.viewModel.getPaymentRequestedTime(id: dutchId) {
+            let secondsPassedSinceRequested = DateTimeCalendarUtil.differenceInSeconds(from: previousRequestedTime, to: currentTime)
+            if secondsPassedSinceRequested < animationDuration {
+                let animationStartingPoint = CGFloat(Double(secondsPassedSinceRequested) / Double(10))
+                collectionViewCell.progressAnimationButton.animate(from: animationStartingPoint)
             } else {
-                collectionViewCell.updateRequestButtonToSent()
+                collectionViewCell.updateRequestButtonToRequestSent()
                 self.viewModel.updatePaymentStatusToNextCase(dutchId: dutchId)
             }
         } else {
